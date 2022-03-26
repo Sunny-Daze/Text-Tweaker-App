@@ -31,9 +31,7 @@ export default function TextForm(props) {
   };
 
   const handleCopyClick = () => {
-    var text = document.getElementById("myBox");
-    text.select();
-    navigator.clipboard.writeText(text.value);
+    navigator.clipboard.writeText(text);
     props.showalert("Text copied to clipboard", "success");
   };
 
@@ -52,11 +50,11 @@ export default function TextForm(props) {
   return (
     <>
       <div
-        className="container my-4"
+        className="container my-3"
         style={{ color: props.mode === "light" ? "#042743" : "white" }}
       >
         <h1>{props.heading}</h1>
-        <div className="mb-3 my-2">
+        <div className="mb-3">
           <textarea
             className="form-control"
             id="myBox"
@@ -64,39 +62,60 @@ export default function TextForm(props) {
             value={text}
             onChange={handleChange}
             style={{
-              backgroundColor: props.mode === "light" ? "white" : "grey",
+              backgroundColor: props.mode === "light" ? "white" : "#13466e",
               color: props.mode === "light" ? "#042743" : "white",
             }}
           ></textarea>
         </div>
-        <button className="btn btn-primary mx-2" onClick={handleUpperClick}>
+        <button
+          className="btn btn-primary mx-2 my-1"
+          onClick={handleUpperClick}
+        >
           Convert to UpperCase
         </button>
-        <button className="btn btn-primary mx-2" onClick={handleLowerClick}>
+        <button
+          className="btn btn-primary mx-2 my-1"
+          onClick={handleLowerClick}
+        >
           Convert to LowerCase
         </button>
-        <button className="btn btn-primary mx-2" onClick={handleClearClick}>
+        <button
+          className="btn btn-primary my-1 mx-2"
+          onClick={handleClearClick}
+        >
           Clear Canvas
         </button>
-        <button className="btn btn-primary mx-2" onClick={handleInverseClick}>
+        <button
+          className="btn btn-primary my-1 mx-2"
+          onClick={handleInverseClick}
+        >
           Inverse Case
         </button>
-        <button className="btn btn-primary mx-2" onClick={handleCopyClick}>
+        <button className="btn btn-primary my-1 mx-2" onClick={handleCopyClick}>
           Copy Text
         </button>
-        <button className="btn btn-primary mx-2" onClick={handleSpaceClick}>
+        <button
+          className="btn btn-primary mx-2 my-1"
+          onClick={handleSpaceClick}
+        >
           Remove Extra White Spaces
         </button>
       </div>
 
       <div
-        className="container my-5"
+        className="container my-3"
         style={{ color: props.mode === "light" ? "#042743" : "white" }}
       >
         <h2>Your Text Summary : </h2>
         <p>
-          <b>{text ? text.split(" ").length : 0}</b> Words,{" "}
-          <b>{text.length} </b>
+          <b>
+            {
+              text.split(/\s+/).filter((element) => {
+                return element.length !== 0;
+              }).length
+            }
+          </b>{" "}
+          Words, <b>{text.length} </b>
           Characters
         </p>
         <p>
