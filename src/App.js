@@ -30,7 +30,7 @@ function App() {
   };
   return (
     <>
-      <Navbar title="String Sister" mode={mode} toggle={toggle} />
+      <Navbar title="Text Tweaker" mode={mode} toggle={toggle} />
       <Alert alert={alert} />
       <TextForm
         showalert={showalert}
